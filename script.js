@@ -1,3 +1,4 @@
+// Función para formatear el mensaje
 const formatMessage = (message) => {
   const words = message.split(' ');
   let lines = [];
@@ -16,54 +17,53 @@ const formatMessage = (message) => {
   return lines.join('\n');
 };
 
-// Lee mensaje de query strings
-const urlSearchParams = new URLSearchParams(window.location.search)
-const messageCustom = urlSearchParams.get('message')
+// Leer mensaje desde los query strings
+const urlSearchParams = new URLSearchParams(window.location.search);
+const messageCustom = urlSearchParams.get('message');
 
 if (messageCustom) {
-  const mainMessageElement = document.querySelector('#mainMessage')
-  mainMessageElement.textContent = formatMessage(decodeURI(messageCustom))
+  const mainMessageElement = document.querySelector('#mainMessage');
+  mainMessageElement.textContent = formatMessage(decodeURI(messageCustom));
 }
 
-// Funcionalidad de botones
-const btnOpenElement = document.querySelector('#open')
-const btnCloseElement = document.querySelector('#close')
+// Selección de elementos
+const btnOpenElement = document.querySelector('#open');
+const btnCloseElement = document.querySelector('#close');
+const coverElement = document.querySelector('.cover');
+const paperElement = document.querySelector('.paper');
+const heartElement = document.querySelector('.heart');
+const titleElement = document.querySelector('.title'); // Selección del título
 
-btnCloseElement.disabled = true
+btnCloseElement.disabled = true; // Desactivar botón "Cerrar" al inicio
 
-btnOpenElement.addEventListener('click', ()=> {
-  btnOpenElement.disabled = true
-  btnCloseElement.disabled = false
-  const coverElement = document.querySelector('.cover')
-  coverElement.classList.add('open-cover')
+// Evento para el botón "Abrir"
+btnOpenElement.addEventListener('click', () => {
+  btnOpenElement.disabled = true; // Desactivar botón "Abrir"
+  btnCloseElement.disabled = false; // Activar botón "Cerrar"
+  titleElement.style.display = "none"; // Ocultar el título
 
-  setTimeout(()=>{
-    coverElement.style.zIndex = -1
-    
-    const paperElement = document.querySelector('.paper')
-    paperElement.classList.remove('close-paper')
-    paperElement.classList.add('open-paper')
+  coverElement.classList.add('open-cover');
 
-    const heartElement = document.querySelector('.heart')
-    heartElement.style.display = 'block'
-  
-  }, 500)
-})
+  setTimeout(() => {
+    coverElement.style.zIndex = -1;
+    paperElement.classList.remove('close-paper');
+    paperElement.classList.add('open-paper');
+    heartElement.style.display = 'block';
+  }, 500);
+});
 
-btnCloseElement.addEventListener('click', ()=> {
-  btnOpenElement.disabled = false
-  btnCloseElement.disabled = true
+// Evento para el botón "Cerrar"
+btnCloseElement.addEventListener('click', () => {
+  btnOpenElement.disabled = false; // Activar botón "Abrir"
+  btnCloseElement.disabled = true; // Desactivar botón "Cerrar"
+  titleElement.style.display = "block"; // Mostrar el título
 
-  const coverElement = document.querySelector('.cover')
-  const paperElement = document.querySelector('.paper')
-  paperElement.classList.remove('open-paper')
-  paperElement.classList.add('close-paper')
-  
-  setTimeout(()=>{
-    coverElement.style.zIndex = 0
-    coverElement.classList.remove('open-cover')
+  paperElement.classList.remove('open-paper');
+  paperElement.classList.add('close-paper');
 
-    const heartElement = document.querySelector('.heart')
-    heartElement.style.display = 'none'
-  },500)
-})
+  setTimeout(() => {
+    coverElement.style.zIndex = 0;
+    coverElement.classList.remove('open-cover');
+    heartElement.style.display = 'none';
+  }, 500);
+});
