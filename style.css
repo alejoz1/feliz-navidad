@@ -229,12 +229,15 @@ main {
   }
 }
 /* Estilo del título */
+/* Estilo del título alineado a la izquierda */
 .title {
   font-size: 2rem;
   color: #fe3334;
-  text-align: center;
+  text-align: left;
   margin-bottom: 1rem;
+  margin-left: 1rem; /* Ajustar margen para separarlo del borde */
 }
+
 
 /* Estilo del mensaje */
 .message {
