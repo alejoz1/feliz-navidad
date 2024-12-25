@@ -254,4 +254,10 @@ main {
   text-align: center;
   margin-top: 2rem;
 }
+@media (max-width: 480px) {
+  .paper {
+    font-size: 0.9rem; /* Un poco más pequeño en pantallas muy pequeñas */
+    padding: 1rem; /* Reducir espacio interior */
+  }
+}
 
