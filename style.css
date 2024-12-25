@@ -228,3 +228,19 @@ main {
     left: 45%;
   }
 }
+/* Estilo del título */
+.title {
+  font-size: 2rem;
+  color: #fe3334;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Estilo del mensaje */
+.message {
+  font-size: 1.2rem;
+  color: #ff999e;
+  text-align: center;
+  margin-top: 2rem;
+}
+
